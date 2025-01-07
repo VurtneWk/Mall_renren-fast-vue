@@ -1,6 +1,5 @@
 <template>
-  <el-tree :data="menus" :props="defaultProps" :expand-on-click-node="false" show-checkbox node-key="catId"
-    :default-expanded-keys="expandedKey">
+  <el-tree :data="menus" :props="defaultProps" :expand-on-click-node="false" show-checkbox node-key="catId">
     <span class="custom-tree-node" slot-scope="{ node, data }">
       <span>{{ node.label }}</span>
       <span>
@@ -15,12 +14,11 @@
   </el-tree>
 </template>
 
+
 <script>
-/* eslint-disable */
 export default {
   data() {
     return {
-      expandedKey: [],
       menus: [],
       defaultProps: {
         children: 'childrenList',
@@ -59,8 +57,6 @@ export default {
             message: '菜单删除成功!'
           });
           this.getMenus()
-          //设置需要默认展开的菜单
-          this.expandedKey = [node.parent.data.catId];
         })
       }).catch(() => {
         this.$message({
@@ -75,5 +71,7 @@ export default {
   }
 }
 </script>
+
+
 
 <style scoped lang="scss"></style>

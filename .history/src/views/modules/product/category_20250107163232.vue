@@ -1,26 +1,7 @@
-<template>
-  <el-tree :data="menus" :props="defaultProps" :expand-on-click-node="false" show-checkbox node-key="catId"
-    :default-expanded-keys="expandedKey">
-    <span class="custom-tree-node" slot-scope="{ node, data }">
-      <span>{{ node.label }}</span>
-      <span>
-        <el-button v-if="node.level <= 2" type="text" size="mini" @click="() => append(data)">
-          Append
-        </el-button>
-        <el-button v-if="node.childNodes.length === 0" type="text" size="mini" @click="() => remove(node, data)">
-          Delete
-        </el-button>
-      </span>
-    </span>
-  </el-tree>
-</template>
-
 <script>
-/* eslint-disable */
 export default {
   data() {
     return {
-      expandedKey: [],
       menus: [],
       defaultProps: {
         children: 'childrenList',
@@ -56,11 +37,9 @@ export default {
         }).then(({ data }) => {
           this.$message({
             type: 'success',
-            message: '菜单删除成功!'
+            message: '删除成功!'
           });
           this.getMenus()
-          //设置需要默认展开的菜单
-          this.expandedKey = [node.parent.data.catId];
         })
       }).catch(() => {
         this.$message({
@@ -75,5 +54,21 @@ export default {
   }
 }
 </script>
+
+<template>
+  <el-tree :data="menus" :props="defaultProps" :expand-on-click-node="false" show-checkbox node-key="catId">
+    <span class="custom-tree-node" slot-scope="{ node, data }">
+      <span>{{ node.label }}</span>
+      <span>
+        <el-button v-if="node.level <= 2" type="text" size="mini" @click="() => append(data)">
+          Append
+        </el-button>
+        <el-button v-if="node.childNodes.length === 0" type="text" size="mini" @click="() => remove(node, data)">
+          Delete
+        </el-button>
+      </span>
+    </span>
+  </el-tree>
+</template>
 
 <style scoped lang="scss"></style>
