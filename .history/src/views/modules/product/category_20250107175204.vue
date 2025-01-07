@@ -91,12 +91,11 @@ export default {
       }).then(({ data }) => {
         this.$message({
           type: 'success',
-          message: '菜单保存成功!'
+          message: '菜单报春成功!'
         });
-        this.dialogVisible = false
         this.getMenus()
         //设置需要默认展开的菜单
-        this.expandedKey = [this.category.parentCid];
+        // this.expandedKey = [node.parent.data.catId];
       })
     },
     remove(node, data) {

@@ -28,7 +28,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addCategory">确 定</el-button>
+        <el-button type="primary" @click="submitData">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -39,16 +39,15 @@
 export default {
   data() {
     return {
-      title: "",
       category: {
         name: "",
         parentCid: 0,
         catLevel: 0,
         showStatus: 1,
         sort: 0,
-        // productUnit: "",
-        // icon: "",
-        // catId: null
+        productUnit: "",
+        icon: "",
+        catId: null
       },
       dialogVisible: false,
       expandedKey: [],
@@ -71,34 +70,9 @@ export default {
     },
     append(data) {
       this.dialogVisible = true
-      this.category.parentCid = data.catId
-      this.category.catLevel = data.catLevel * 1 + 1;
-      // this.category.catId = null;
-      // this.category.name = "";
-      // this.category.icon = "";
-      // this.category.productUnit = "";
-      // this.category.sort = 0;
-      // this.category.showStatus = 1;
 
     },
-    //点击确定按钮时 添加三级分类
-    addCategory() {
-      console.log("addCategory", this.category);
-      this.$http({
-        url: this.$http.adornUrl('/product/category/save'),
-        method: 'post',
-        data: this.$http.adornData(this.category, false)
-      }).then(({ data }) => {
-        this.$message({
-          type: 'success',
-          message: '菜单保存成功!'
-        });
-        this.dialogVisible = false
-        this.getMenus()
-        //设置需要默认展开的菜单
-        this.expandedKey = [this.category.parentCid];
-      })
-    },
+
     remove(node, data) {
       let ids = [data.catId]
       this.$confirm(`是否删除【${data.name}】菜单`, '提示', {

@@ -96,7 +96,7 @@ export default {
         this.dialogVisible = false
         this.getMenus()
         //设置需要默认展开的菜单
-        this.expandedKey = [this.category.parentCid];
+        // this.expandedKey = [node.parent.data.catId];
       })
     },
     remove(node, data) {

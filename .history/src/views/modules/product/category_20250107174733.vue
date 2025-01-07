@@ -44,8 +44,8 @@ export default {
         name: "",
         parentCid: 0,
         catLevel: 0,
-        showStatus: 1,
-        sort: 0,
+        // showStatus: 1,
+        // sort: 0,
         // productUnit: "",
         // icon: "",
         // catId: null
@@ -84,20 +84,7 @@ export default {
     //点击确定按钮时 添加三级分类
     addCategory() {
       console.log("addCategory", this.category);
-      this.$http({
-        url: this.$http.adornUrl('/product/category/save'),
-        method: 'post',
-        data: this.$http.adornData(this.category, false)
-      }).then(({ data }) => {
-        this.$message({
-          type: 'success',
-          message: '菜单保存成功!'
-        });
-        this.dialogVisible = false
-        this.getMenus()
-        //设置需要默认展开的菜单
-        this.expandedKey = [this.category.parentCid];
-      })
+
     },
     remove(node, data) {
       let ids = [data.catId]

@@ -44,8 +44,8 @@ export default {
         name: "",
         parentCid: 0,
         catLevel: 0,
-        showStatus: 1,
-        sort: 0,
+        // showStatus: 1,
+        // sort: 0,
         // productUnit: "",
         // icon: "",
         // catId: null
@@ -91,45 +91,45 @@ export default {
       }).then(({ data }) => {
         this.$message({
           type: 'success',
-          message: '菜单保存成功!'
+          message: '菜单报春成功!'
         });
-        this.dialogVisible = false
         this.getMenus()
         //设置需要默认展开的菜单
-        this.expandedKey = [this.category.parentCid];
+        // this.expandedKey = [node.parent.data.catId];
       })
-    },
-    remove(node, data) {
-      let ids = [data.catId]
-      this.$confirm(`是否删除【${data.name}】菜单`, '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.$http({
-          url: this.$http.adornUrl('/product/category/delete'),
-          method: 'post',
-          data: this.$http.adornData(ids, false)
-        }).then(({ data }) => {
-          this.$message({
-            type: 'success',
-            message: '菜单删除成功!'
-          });
-          this.getMenus()
-          //设置需要默认展开的菜单
-          this.expandedKey = [node.parent.data.catId];
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
-      });
     }
   },
-  created() {
-    this.getMenus()
+  remove(node, data) {
+    let ids = [data.catId]
+    this.$confirm(`是否删除【${data.name}】菜单`, '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(() => {
+      this.$http({
+        url: this.$http.adornUrl('/product/category/delete'),
+        method: 'post',
+        data: this.$http.adornData(ids, false)
+      }).then(({ data }) => {
+        this.$message({
+          type: 'success',
+          message: '菜单删除成功!'
+        });
+        this.getMenus()
+        //设置需要默认展开的菜单
+        this.expandedKey = [node.parent.data.catId];
+      })
+    }).catch(() => {
+      this.$message({
+        type: 'info',
+        message: '已取消删除'
+      });
+    });
   }
+},
+created() {
+  this.getMenus()
+}
 }
 </script>
 
