@@ -25,9 +25,8 @@
       </el-table-column>
       <el-table-column prop="showStatus" header-align="center" align="center" label="显示状态">
         <template slot-scope="scope">
-          <el-switch v-model="scope.row.showStatus" active-color="#13ce66" inactive-color="#ff4949"
-            @change="updateBrandStatus(scope.row)" :active-value="1" :inactive-value="0">
-          </el-switch>
+          <i class="el-icon-time"></i>
+          <span style="margin-left: 10px">{{ scope.row.date }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="firstLetter" header-align="center" align="center" label="检索首字母">
@@ -51,7 +50,6 @@
 </template>
 
 <script>
-import { method } from 'lodash';
 import AddOrUpdate from './brand-add-or-update'
 export default {
   data() {
@@ -96,21 +94,6 @@ export default {
         }
         this.dataListLoading = false
       })
-    },
-    updateBrandStatus(data) {
-      console.log(data);
-      let { brandId, showStatus } = data
-      this.$http({
-        url: this.$http.adornUrl("/product/brand/update"),
-        method: "post",
-        data: this.$http.adornData({ brandId, showStatus: showStatus ? 1 : 0 }, false)
-      })
-        .then(({ data }) => {
-          this.$message({
-            type: "success",
-            message: "状态更新成功"
-          })
-        })
     },
     // 每页数
     sizeChangeHandle(val) {

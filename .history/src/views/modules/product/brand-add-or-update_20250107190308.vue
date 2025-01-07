@@ -1,7 +1,7 @@
 <template>
   <el-dialog :title="!dataForm.brandId ? '新增' : '修改'" :close-on-click-modal="false" :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()"
-      label-width="140px">
+      label-width="80px">
       <el-form-item label="品牌名" prop="name">
         <el-input v-model="dataForm.name" placeholder="品牌名"></el-input>
       </el-form-item>
@@ -12,7 +12,7 @@
         <el-input v-model="dataForm.descript" placeholder="介绍"></el-input>
       </el-form-item>
       <el-form-item label="显示状态" prop="showStatus">
-        <el-switch v-model="dataForm.showStatus" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+        <el-switch v-model="scope.row.showStatus" active-color="#13ce66" inactive-color="#ff4949">
       </el-form-item>
       <el-form-item label="检索首字母" prop="firstLetter">
         <el-input v-model="dataForm.firstLetter" placeholder="检索首字母"></el-input>
