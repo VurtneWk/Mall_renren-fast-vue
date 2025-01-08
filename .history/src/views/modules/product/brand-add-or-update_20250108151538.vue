@@ -67,7 +67,7 @@ export default {
         firstLetter: [
           {
             validator: (rule, value, callback) => {
-              if (value === "") {
+              if (value == "") {
                 callback(new Error("首字母必须填写"));
               } else if (!/^[a-zA-Z]$/.test(value)) {
                 callback(new Error("首字母必须a-z或者A-Z之间"));
@@ -81,7 +81,7 @@ export default {
         sort: [
           {
             validator: (rule, value, callback) => {
-              if (value === "") {
+              if (value == "") {
                 console.log("sort = ", value, value == "");
                 callback(new Error("排序字段必须填写"));
               } else if (!Number.isInteger(value) || value < 0) {
