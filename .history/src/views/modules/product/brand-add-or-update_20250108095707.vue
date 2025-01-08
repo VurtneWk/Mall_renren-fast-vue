@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import SingleUpload from "@/components/upload/singleUpload";
+import SingleUpload from "@/components/upload/singleUpload"
 
 export default {
-  components: {
+  comments: {
     SingleUpload
   },
   data() {

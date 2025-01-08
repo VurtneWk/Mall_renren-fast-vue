@@ -33,7 +33,7 @@
 import SingleUpload from "@/components/upload/singleUpload";
 
 export default {
-  components: {
+  comments: {
     SingleUpload
   },
   data() {
